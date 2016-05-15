@@ -26,7 +26,7 @@ extensions:
 	captcha: Minetro\SeznamCaptcha\DI\SeznamCaptchaExtension
 
 captcha:
-	auto: off / on
+	auto: on / off
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ captcha:
 
 ### Automatic
 
-Just register an extension and keep `auto` argument as it is.
+Just register an extension and keep `auto` argument as it is (`on by default`).
 
 #### Form component
 
