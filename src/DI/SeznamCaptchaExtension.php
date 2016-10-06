@@ -6,6 +6,7 @@ use Minetro\SeznamCaptcha\Provider\HttpProviderFactory;
 use Minetro\SeznamCaptcha\Provider\XmlRpcProviderFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\PhpLiteral;
 use Nette\Utils\Validators;
 
 final class SeznamCaptchaExtension extends CompilerExtension
@@ -49,7 +50,7 @@ final class SeznamCaptchaExtension extends CompilerExtension
 
 		if ($config['auto'] === TRUE) {
 			$method = $class->getMethod('initialize');
-			$method->addBody('?::bind($this->getService(?));', [FormBinder::class, $this->prefix('providerFactory')]);
+			$method->addBody('?::bind($this->getService(?));', [new PhpLiteral(FormBinder::class), $this->prefix('providerFactory')]);
 		}
 	}
 }
