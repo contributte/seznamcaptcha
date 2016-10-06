@@ -1,15 +1,13 @@
 # SeznamCaptcha
 
-[Seznam Captcha](http://captcha-api.seznam.cz) for Nette Framework / Forms.
-
------
-
 [![Build Status](https://img.shields.io/travis/minetro/seznamcaptcha.svg?style=flat-square)](https://travis-ci.org/minetro/seznamcaptcha)
 [![Code coverage](https://img.shields.io/coveralls/minetro/seznamcaptcha.svg?style=flat-square)](https://coveralls.io/r/minetro/seznamcaptcha)
 [![Downloads this Month](https://img.shields.io/packagist/dm/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
 [![Downloads total](https://img.shields.io/packagist/dt/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
 [![Latest stable](https://img.shields.io/packagist/v/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
 [![HHVM Status](https://img.shields.io/hhvm/minetro/seznamcaptcha.svg?style=flat-square)](http://hhvm.h4cc.de/package/minetro/seznamcaptcha)
+
+[Seznam Captcha](http://captcha-api.seznam.cz) for Nette Framework / Forms.
 
 ## Discussion / Help
 
@@ -28,7 +26,8 @@ extensions:
 	captcha: Minetro\SeznamCaptcha\DI\SeznamCaptchaExtension
 
 captcha:
-	auto: on / off
+	auto: off / on
+	method: html | xmlrpc
 ```
 
 ## Usage
@@ -37,7 +36,7 @@ captcha:
 
 ### Automatic
 
-Just register an extension and keep `auto` argument as it is (`on by default`).
+Just register an extension and keep `auto` argument as it is.
 
 #### Form component
 
@@ -48,7 +47,9 @@ protected function createComponentForm()
 {
     $form = new Form();
 
-    $form->addCaptcha();
+    $form->addCaptcha('captcha')
+        ->getCode()
+        ->setRequired('Captcha code is required');
 
     $form->addSubmit('send');
 

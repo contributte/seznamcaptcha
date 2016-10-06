@@ -70,8 +70,8 @@ class CaptchaContainer extends Container
 	public function verify()
 	{
 		$form = $this->getForm(TRUE);
-		$code = $form->getHttpData($form::DATA_LINE, $this['code']->getHtmlName());
-		$hash = $form->getHttpData($form::DATA_LINE, $this['hash']->getHtmlName());
+		$code = $form->getHttpData($form::DATA_LINE, $this->getCode()->getHtmlName());
+		$hash = $form->getHttpData($form::DATA_LINE, $this->getHash()->getHtmlName());
 
 		return $this->validator->validate($code, $hash);
 	}

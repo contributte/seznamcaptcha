@@ -20,6 +20,9 @@ final class SeznamCaptchaExtension extends CompilerExtension
 	/** @var array */
 	private static $methods = ['http', 'xmlrpc'];
 
+	/**
+	 * Register services
+	 */
 	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
