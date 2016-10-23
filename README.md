@@ -27,7 +27,7 @@ extensions:
 
 captcha:
 	auto: off / on
-	method: html | xmlrpc
+	method: http | xmlrpc
 ```
 
 ## Usage

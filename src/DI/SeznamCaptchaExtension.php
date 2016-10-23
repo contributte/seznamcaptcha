@@ -7,7 +7,7 @@ use Minetro\SeznamCaptcha\Provider\XmlRpcProviderFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpLiteral;
-use Nette\Utils\Validators;
+use Nette\Utils\AssertionException;
 
 final class SeznamCaptchaExtension extends CompilerExtension
 {
@@ -30,7 +30,11 @@ final class SeznamCaptchaExtension extends CompilerExtension
 		$config = $this->validateConfig($this->defaults);
 
 		// Validate methods
-		Validators::isInRange($config['method'], self::$methods);
+		if (!in_array($config['method'], self::$methods)) {
+			throw new AssertionException(
+				'Method is not valid. Allowed methods are: ' . implode(', ', self::$methods)
+			);
+		}
 
 		// Add provider
 		$providerFactory = $builder->addDefinition($this->prefix('providerFactory'));
