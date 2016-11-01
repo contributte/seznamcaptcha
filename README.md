@@ -24,10 +24,14 @@ composer require minetro/seznamcaptcha
 ```yaml
 extensions:
 	captcha: Minetro\SeznamCaptcha\DI\SeznamCaptchaExtension
+```
 
+By default is `auto: on` and `method: http`, you can disable it and bind addCaptcha to your forms by yourself.
+
+```yaml
 captcha:
-	auto: off / on
-	method: http | xmlrpc
+	auto: off # on | off
+	method: xmlrpc # http | xmlrpc
 ```
 
 ## Usage
