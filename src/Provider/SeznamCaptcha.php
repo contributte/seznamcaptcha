@@ -4,7 +4,7 @@ namespace Minetro\SeznamCaptcha\Provider;
 
 use Captcha;
 
-class SeznamCaptcha implements CaptchaProvider, ValidationProvider
+class SeznamCaptcha implements CaptchaProvider
 {
 
 	/** @var Captcha */

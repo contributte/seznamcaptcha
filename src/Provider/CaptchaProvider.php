@@ -15,4 +15,11 @@ interface CaptchaProvider
 	 */
 	public function getImage();
 
+	/**
+	 * @param string $code
+	 * @param string $hash
+	 * @return bool
+	 */
+	public function validate($code, $hash);
+
 }

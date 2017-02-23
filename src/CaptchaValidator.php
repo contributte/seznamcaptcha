@@ -2,18 +2,18 @@
 
 namespace Minetro\SeznamCaptcha;
 
-use Minetro\SeznamCaptcha\Provider\ValidationProvider;
+use Minetro\SeznamCaptcha\Provider\CaptchaProvider;
 
 class CaptchaValidator implements Validator
 {
 
-	/** @var ValidationProvider */
+	/** @var CaptchaProvider */
 	private $provider;
 
 	/**
-	 * @param ValidationProvider $provider
+	 * @param CaptchaProvider $provider
 	 */
-	public function __construct(ValidationProvider $provider)
+	public function __construct(CaptchaProvider $provider)
 	{
 		$this->provider = $provider;
 	}

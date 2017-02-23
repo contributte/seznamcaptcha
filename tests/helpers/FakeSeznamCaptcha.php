@@ -16,8 +16,8 @@ final class FakeSeznamCaptcha extends SeznamCaptcha
 	 */
 	public function __construct($pass = TRUE)
 	{
+	    parent::__construct(new FakeCaptcha('https://fake.tld', 12345));
 		$this->pass = $pass;
-		// not call parent..
 	}
 
 	public function getHash()

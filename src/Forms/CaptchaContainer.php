@@ -4,24 +4,22 @@ namespace Minetro\SeznamCaptcha\Forms;
 
 use Minetro\SeznamCaptcha\CaptchaValidator;
 use Minetro\SeznamCaptcha\Provider\CaptchaProvider;
-use Minetro\SeznamCaptcha\Provider\SeznamCaptcha;
-use Minetro\SeznamCaptcha\Provider\ValidationProvider;
 use Minetro\SeznamCaptcha\Validator;
 use Nette\Forms\Container;
 
 class CaptchaContainer extends Container
 {
 
-	/** @var CaptchaProvider|ValidationProvider */
+	/** @var CaptchaProvider */
 	private $provider;
 
 	/** @var Validator */
 	private $validator;
 
 	/**
-	 * @param SeznamCaptcha $provider
+	 * @param CaptchaProvider $provider
 	 */
-	public function __construct(SeznamCaptcha $provider)
+	public function __construct(CaptchaProvider $provider)
 	{
 		parent::__construct();
 		$this->provider = $provider;
@@ -62,6 +60,28 @@ class CaptchaContainer extends Container
 	public function getValidator()
 	{
 		return $this->validator;
+	}
+
+	/**
+	 * @param mixed $validator
+	 * @param mixed $message
+	 * @param mixed $arg
+	 * @return CaptchaInput
+	 */
+	public function addRule($validator, $message = NULL, $arg = NULL)
+	{
+		return $this->getCode()->addRule($validator, $message, $arg);
+	}
+
+	/**
+	 * @param string $message
+	 * @return CaptchaInput
+	 */
+	public function setRequired($message)
+	{
+		return $this->addRule(function ($code) {
+			return $this->verify() === TRUE;
+		}, $message);
 	}
 
 	/**

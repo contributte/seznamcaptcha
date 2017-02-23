@@ -38,11 +38,7 @@ captcha:
 
 ![captcha](https://raw.githubusercontent.com/minetro/seznamcaptcha/master/captcha.png)
 
-### Automatic
-
 Just register an extension and keep `auto` argument as it is.
-
-#### Form component
 
 ```php
 use Nette\Application\UI\Form;
@@ -52,16 +48,9 @@ protected function createComponentForm()
     $form = new Form();
 
     $form->addCaptcha('captcha')
-        ->getCode()
-        ->setRequired('Captcha code is required');
+        ->setRequired('Are you robot?');
 
     $form->addSubmit('send');
-
-    $form->onValidate[] = function (Form $form) {
-        if ($form['captcha']->verify() !== TRUE) {
-            $form->addError('Are you robot?');
-        }
-    };
 
     $form->onSuccess[] = function (Form $form) {
         dump($form['captcha']);
@@ -70,56 +59,6 @@ protected function createComponentForm()
     return $form;
 }
 ```
-
-### Manual
-
-#### Form component
-
-```php
-use Minetro\SeznamCaptcha\Forms\CaptchaHash;
-use Minetro\SeznamCaptcha\Forms\CaptchaImage;
-use Minetro\SeznamCaptcha\Forms\CaptchaInput;
-use Minetro\SeznamCaptcha\Provider\CaptchaValidator;
-use Minetro\SeznamCaptcha\Provider\ProviderFactory;
-use Nette\Application\UI\Form;
-
-/** @var ProviderFactory @inject */
-public $providerFactory;
-
-protected function createComponentForm()
-{
-    $form = new Form();
-
-    $provider = $this->providerFactory->create();
-    $form['image'] = new CaptchaImage('Captcha', $provider);
-    $form['hash'] = new CaptchaHash($provider);
-    $form['code'] = new CaptchaInput('Code');
-
-    $form->addSubmit('send');
-
-    $form->onValidate[] = function (Form $form) use ($provider) {
-        $validator = new CaptchaValidator($provider);
-
-        $hash = $form['hash']->getHttpHash();
-        $code = $form['code']->getHttpCode();
-
-        if ($validator->validate($code, $hash) !== TRUE) {
-            $form->addError('Are you robot?');
-        }
-    };
-
-    $form->onSuccess[] = function (Form $form) {
-        dump($form);
-    };
-
-    return $form;
-}
-```
-
-For better usability add this functionality to your `BaseForms`, `BaseFormFactory` or 
-something like this.
-
-You can also create a trait for it.
 
 ### Rendering
 
@@ -131,14 +70,13 @@ You can also create a trait for it.
 
 #### Manual
 
-Needs a `CaptchaContainer`.
+It needs a `CaptchaContainer` consists of 2 inputs `image` and `code`.
 
 ```latte
 <form n:name="form">
     {input captcha-image}
     {input captcha-code}
 </form>
-
 ```
 
 -----
