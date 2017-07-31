@@ -1,6 +1,4 @@
-# Contributte > Mail
-
-:sparkles: Extra contribution to [`nette/mail`](https://github.com/nette/mail).
+# SeznamCaptcha
 
 [Seznam Captcha](http://captcha-api.seznam.cz) for Nette Framework / Forms.
 
