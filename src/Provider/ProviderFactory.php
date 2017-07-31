@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\Provider;
+namespace Contributte\SeznamCaptcha\Provider;
 
 interface ProviderFactory
 {

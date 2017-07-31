@@ -1,9 +1,9 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\DI;
+namespace Contributte\SeznamCaptcha\DI;
 
-use Minetro\SeznamCaptcha\Provider\HttpProviderFactory;
-use Minetro\SeznamCaptcha\Provider\XmlRpcProviderFactory;
+use Contributte\SeznamCaptcha\Provider\HttpProviderFactory;
+use Contributte\SeznamCaptcha\Provider\XmlRpcProviderFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpLiteral;
@@ -23,6 +23,8 @@ final class SeznamCaptchaExtension extends CompilerExtension
 
 	/**
 	 * Register services
+	 *
+	 * @return void
 	 */
 	public function loadConfiguration()
 	{
@@ -47,6 +49,7 @@ final class SeznamCaptchaExtension extends CompilerExtension
 
 	/**
 	 * @param ClassType $class
+	 * @return void
 	 */
 	public function afterCompile(ClassType $class)
 	{
@@ -57,4 +60,5 @@ final class SeznamCaptchaExtension extends CompilerExtension
 			$method->addBody('?::bind($this->getService(?));', [new PhpLiteral(FormBinder::class), $this->prefix('providerFactory')]);
 		}
 	}
+
 }

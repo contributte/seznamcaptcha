@@ -1,8 +1,8 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\Forms;
+namespace Contributte\SeznamCaptcha\Forms;
 
-use Minetro\SeznamCaptcha\Provider\CaptchaProvider;
+use Contributte\SeznamCaptcha\Provider\CaptchaProvider;
 use Nette\Forms\Controls\BaseControl;
 use Nette\Utils\Html;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Minetro\SeznamCaptcha;
+namespace Contributte\SeznamCaptcha;
 
-use Minetro\SeznamCaptcha\Provider\CaptchaProvider;
+use Contributte\SeznamCaptcha\Provider\CaptchaProvider;
 
 class CaptchaValidator implements Validator
 {

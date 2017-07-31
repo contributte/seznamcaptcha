@@ -1,6 +1,8 @@
 <?php
 
-use Minetro\SeznamCaptcha\Provider\SeznamCaptcha;
+namespace Tests\Helpers;
+
+use Contributte\SeznamCaptcha\Provider\SeznamCaptcha;
 
 final class FakeSeznamCaptcha extends SeznamCaptcha
 {
@@ -20,16 +22,27 @@ final class FakeSeznamCaptcha extends SeznamCaptcha
 		$this->pass = $pass;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHash()
 	{
 		return self::HASH;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getImage()
 	{
 		return self::IMAGE;
 	}
 
+	/**
+	 * @param string $code
+	 * @param string $hash
+	 * @return bool
+	 */
 	public function validate($code, $hash)
 	{
 		return $this->pass;

@@ -1,17 +1,14 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\Forms;
+namespace Contributte\SeznamCaptcha\Forms;
 
-use Minetro\SeznamCaptcha\CaptchaValidator;
-use Minetro\SeznamCaptcha\Provider\CaptchaProvider;
-use Minetro\SeznamCaptcha\Validator;
+use Contributte\SeznamCaptcha\CaptchaValidator;
+use Contributte\SeznamCaptcha\Provider\CaptchaProvider;
+use Contributte\SeznamCaptcha\Validator;
 use Nette\Forms\Container;
 
 class CaptchaContainer extends Container
 {
-
-	/** @var CaptchaProvider */
-	private $provider;
 
 	/** @var Validator */
 	private $validator;
@@ -22,7 +19,6 @@ class CaptchaContainer extends Container
 	public function __construct(CaptchaProvider $provider)
 	{
 		parent::__construct();
-		$this->provider = $provider;
 		$this->validator = new CaptchaValidator($provider);
 
 		$this['image'] = new CaptchaImage('Captcha', $provider);

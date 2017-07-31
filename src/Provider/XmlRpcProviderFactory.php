@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\Provider;
+namespace Contributte\SeznamCaptcha\Provider;
 
 use CaptchaXMLRPC;
 
@@ -12,7 +12,7 @@ final class XmlRpcProviderFactory implements ProviderFactory
 	 */
 	public function create()
 	{
-		return new SeznamCaptcha(new CaptchaXMLRPC("captcha.seznam.cz", 3410));
+		return new SeznamCaptcha(new CaptchaXMLRPC('captcha.seznam.cz', 3410));
 	}
 
 }

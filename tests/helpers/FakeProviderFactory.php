@@ -1,6 +1,8 @@
 <?php
 
-use Minetro\SeznamCaptcha\Provider\ProviderFactory;
+namespace Tests\Helpers;
+
+use Contributte\SeznamCaptcha\Provider\ProviderFactory;
 
 final class FakeProviderFactory implements ProviderFactory
 {

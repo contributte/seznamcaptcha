@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\SeznamCaptcha;
+namespace Contributte\SeznamCaptcha;
 
 interface Validator
 {

@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Helpers;
+
+use Captcha;
+
 final class FakeCaptcha extends Captcha
 {
 

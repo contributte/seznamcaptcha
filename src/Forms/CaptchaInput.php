@@ -1,6 +1,6 @@
 <?php
 
-namespace Minetro\SeznamCaptcha\Forms;
+namespace Contributte\SeznamCaptcha\Forms;
 
 use Nette\Forms\Controls\TextInput;
 use Nette\Forms\Form;

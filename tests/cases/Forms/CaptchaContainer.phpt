@@ -4,11 +4,13 @@
  * Test: Forms/CaptchaContainer
  */
 
-use Minetro\SeznamCaptcha\Forms\CaptchaContainer;
-use Minetro\SeznamCaptcha\Forms\CaptchaHash;
-use Minetro\SeznamCaptcha\Forms\CaptchaImage;
-use Minetro\SeznamCaptcha\Forms\CaptchaInput;
+use Contributte\SeznamCaptcha\Forms\CaptchaContainer;
+use Contributte\SeznamCaptcha\Forms\CaptchaHash;
+use Contributte\SeznamCaptcha\Forms\CaptchaImage;
+use Contributte\SeznamCaptcha\Forms\CaptchaInput;
 use Tester\Assert;
+use Tests\Helpers\FakeProviderFactory;
+use Tests\Helpers\FakeSeznamCaptcha;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
@@ -24,7 +26,7 @@ test(function () {
 });
 
 test(function () {
-	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = true));
+	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = TRUE));
 	$validator = $captcha->getValidator();
 
 	// Always true, because of FakeSeznamCaptcha($pass)
