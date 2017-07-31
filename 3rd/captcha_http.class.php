@@ -75,7 +75,7 @@ class CaptchaHTTP extends Captcha
 	*/
 	protected function _call($methodName, $params = array())
 	{
-		$ch = curl_init(sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, $methodName, http_build_query($params)));
+		$ch = curl_init(sprintf('https://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, $methodName, http_build_query($params)));
 		if (!$ch) {
 			throw new Exception("Chyba volani curl_init");
 		}
@@ -122,7 +122,7 @@ class CaptchaHTTP extends Captcha
 	*/
 	public function getImage($hash)
 	{
-		return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getImage', http_build_query(array('hash' => $hash)));
+		return sprintf('https://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getImage', http_build_query(array('hash' => $hash)));
 	}
 	// }}}
 
@@ -135,7 +135,7 @@ class CaptchaHTTP extends Captcha
 	*/
 	public function getAudio($hash)
 	{
-		return sprintf('http://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getAudio', http_build_query(array('hash' => $hash)));
+		return sprintf('https://%s:%d/%s?%s', $this->_serverHostname, $this->_serverPort, 'captcha.getAudio', http_build_query(array('hash' => $hash)));
 	}
 	// }}}
 

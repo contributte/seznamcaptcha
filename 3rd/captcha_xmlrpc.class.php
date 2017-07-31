@@ -83,7 +83,7 @@ class CaptchaXMLRPC extends Captcha
 			throw new Exception("PHP XMLRPC extension neni nainstalovana");
 		}
 
-		$ch = curl_init(sprintf('http://%s:%d', $this->_serverHostname, $this->_serverPort));
+		$ch = curl_init(sprintf('https://%s:%d', $this->_serverHostname, $this->_serverPort));
 		if (!$ch) {
 			throw new Exception("Chyba volani curl_init");
 		}
