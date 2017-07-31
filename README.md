@@ -1,84 +1,59 @@
-# SeznamCaptcha
+# Contributte > Mail
 
-[![Build Status](https://img.shields.io/travis/minetro/seznamcaptcha.svg?style=flat-square)](https://travis-ci.org/minetro/seznamcaptcha)
-[![Code coverage](https://img.shields.io/coveralls/minetro/seznamcaptcha.svg?style=flat-square)](https://coveralls.io/r/minetro/seznamcaptcha)
-[![Downloads this Month](https://img.shields.io/packagist/dm/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
-[![Downloads total](https://img.shields.io/packagist/dt/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
-[![Latest stable](https://img.shields.io/packagist/v/minetro/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/minetro/seznamcaptcha)
-[![HHVM Status](https://img.shields.io/hhvm/minetro/seznamcaptcha.svg?style=flat-square)](http://hhvm.h4cc.de/package/minetro/seznamcaptcha)
+:sparkles: Extra contribution to [`nette/mail`](https://github.com/nette/mail).
 
 [Seznam Captcha](http://captcha-api.seznam.cz) for Nette Framework / Forms.
 
+-----
+
+[![Build Status](https://img.shields.io/travis/contributte/seznamcaptcha.svg?style=flat-square)](https://travis-ci.org/contributte/seznamcaptcha)
+[![Code coverage](https://img.shields.io/coveralls/contributte/seznamcaptcha.svg?style=flat-square)](https://coveralls.io/r/contributte/seznamcaptcha)
+[![Licence](https://img.shields.io/packagist/l/contributte/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/contributte/seznamcaptcha)
+
+[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/contributte/seznamcaptcha)
+[![Downloads total](https://img.shields.io/packagist/dt/contributte/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/contributte/seznamcaptcha)
+[![Latest stable](https://img.shields.io/packagist/v/contributte/seznamcaptcha.svg?style=flat-square)](https://packagist.org/packages/contributte/seznamcaptcha)
+
 ## Discussion / Help
 
-[![Join the chat](https://img.shields.io/gitter/room/minetro/nette.svg?style=flat-square)](https://gitter.im/minetro/nette?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
 
 ## Install
 
-```sh
-composer require minetro/seznamcaptcha
+```
+composer require contributte/seznamcaptcha
 ```
 
-## Extension
+## Versions
 
-```yaml
-extensions:
-	captcha: Minetro\SeznamCaptcha\DI\SeznamCaptchaExtension
-```
+| State       | Version | Branch   | PHP      |
+|-------------|---------|----------|----------|
+| stable      | `^0.3`  | `master` | `>= 5.6` |
 
-By default is `auto: on` and `method: http`, you can disable it and bind addCaptcha to your forms by yourself.
+## Overview
 
-```yaml
-captcha:
-	auto: off # on | off
-	method: xmlrpc # http | xmlrpc
-```
+- [Usage - how to register](https://github.com/contributte/seznamcaptcha/blob/master/.docs/README.md#usage)
+- [Extension - how to configure](https://github.com/contributte/seznamcaptcha/blob/master/.docs/README.md#configuration)
+- [Form - setup nette form](https://github.com/contributte/seznamcaptcha/blob/master/.docs/README.md#form)
+- [Rendering - auto vs manual](https://github.com/contributte/seznamcaptcha/blob/master/.docs/README.md#rendering)
+- [Example - advanced preview](https://github.com/contributte/seznamcaptcha/blob/master/.docs/README.md#example)
 
-## Usage
+## Maintainers
 
-![captcha](https://raw.githubusercontent.com/minetro/seznamcaptcha/master/captcha.png)
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/f3l1x">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
+        </a>
+        </br>
+        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
 
-Just register an extension and keep `auto` argument as it is.
+-------
 
-```php
-use Nette\Application\UI\Form;
-
-protected function createComponentForm()
-{
-    $form = new Form();
-
-    $form->addCaptcha('captcha')
-        ->setRequired('Are you robot?');
-
-    $form->addSubmit('send');
-
-    $form->onSuccess[] = function (Form $form) {
-        dump($form['captcha']);
-    };
-
-    return $form;
-}
-```
-
-### Rendering
-
-#### Automatic
-
-```
-{control form}
-````
-
-#### Manual
-
-It needs a `CaptchaContainer` consists of 2 inputs `image` and `code`.
-
-```latte
-<form n:name="form">
-    {input captcha-image}
-    {input captcha-code}
-</form>
-```
-
------
-
-Thanks for testing, reporting and contributing.
+Thank you for testing, reporting and contributing.

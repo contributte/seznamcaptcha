@@ -1,6 +1,76 @@
 # SeznamCaptcha
 
-## Advanced
+## Content
+
+- [Usage - how to register](#usage)
+- [Extension - how to configure](#configuration)
+- [Form - setup nette form](#form)
+- [Rendering - auto vs manual](#rendering)
+- [Example - advanced example](#example)
+
+## Usage
+
+```yaml
+extensions:
+    captcha: Contributte\SeznamCaptcha\DI\SeznamCaptchaExtension
+```
+
+## Configuration
+
+By default is `auto: on` and `method: http`, you can disable it and bind addCaptcha to your forms by yourself.
+
+```yaml
+captcha:
+    auto: off # on | off
+    method: xmlrpc # http | xmlrpc
+```
+
+## Form
+
+![captcha](https://raw.githubusercontent.com/contributte/seznamcaptcha/master/.docs/captcha.png)
+
+Just register an extension and keep `auto` argument as it is.
+
+```php
+use Nette\Application\UI\Form;
+
+protected function createComponentForm()
+{
+    $form = new Form();
+
+    $form->addCaptcha('captcha')
+        ->setRequired('Are you robot?');
+
+    $form->addSubmit('send');
+
+    $form->onSuccess[] = function (Form $form) {
+        dump($form['captcha']);
+    };
+
+    return $form;
+}
+```
+
+## Rendering
+
+### Automatic
+
+```
+{control form}
+````
+
+### Manual
+
+It needs a `CaptchaContainer` consists of 2 inputs `image` and `code`.
+
+```latte
+<form n:name="form">
+    {input captcha-image}
+    {input captcha-code}
+</form>
+```
+
+## Example
 
 ```php
 use Minetro\SeznamCaptcha\Forms\CaptchaHash;
