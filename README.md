@@ -26,6 +26,7 @@ composer require contributte/seznamcaptcha
 
 | State       | Version | Branch   | PHP      |
 |-------------|---------|----------|----------|
+| dev         | `^0.4`  | `master` | `>= 5.6` |
 | stable      | `^0.3`  | `master` | `>= 5.6` |
 
 ## Overview
