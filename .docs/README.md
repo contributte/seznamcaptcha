@@ -55,7 +55,7 @@ protected function createComponentForm()
 
 ### Automatic
 
-```
+```smarty
 {control form}
 ````
 
@@ -63,7 +63,7 @@ protected function createComponentForm()
 
 It needs a `CaptchaContainer` consists of 2 inputs `image` and `code`.
 
-```latte
+```smarty
 <form n:name="form">
     {input captcha-image}
     {input captcha-code}
