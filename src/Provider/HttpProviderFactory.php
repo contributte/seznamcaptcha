@@ -12,7 +12,7 @@ final class HttpProviderFactory implements ProviderFactory
 	 */
 	public function create()
 	{
-		return new SeznamCaptcha(new CaptchaHTTP('captcha.seznam.cz', 80));
+		return new SeznamCaptcha(new CaptchaHTTP('captcha.seznam.cz', 443));
 	}
 
 }
