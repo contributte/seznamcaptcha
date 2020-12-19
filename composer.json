@@ -1,9 +1,9 @@
 {
   "name": "contributte/seznamcaptcha",
   "description": "SeznamCaptcha to Nette Framework",
-  "keywords": ["security", "captcha", "seznam", "nette", "forms"],
+  "keywords": ["security", "captcha", "seznam", "nette", "forms", "contributte"],
   "type": "library",
-  "license": ["BSD-3-Clause"],
+  "license": ["MIT"],
   "homepage": "https://github.com/contributte/seznamcaptcha",
   "authors": [
     {
@@ -12,14 +12,17 @@
     }
   ],
   "require": {
-    "php": ">= 5.6",
-    "nette/di": "^2.4.9",
-    "nette/forms": "^2.4.5"
+    "php": ">=7.2",
+    "nette/di": "^3.0.6",
+    "nette/forms": "^3.0.7"
   },
   "require-dev": {
-    "ninjify/qa": "^0.4.0",
-    "ninjify/nunjuck": "^0.1.4",
-    "nette/tester": "1.7.1"
+    "ninjify/qa": "^0.12",
+    "ninjify/nunjuck": "^0.4",
+    "phpstan/phpstan": "^0.12",
+    "phpstan/phpstan-deprecation-rules": "^0.12",
+    "phpstan/phpstan-nette": "^0.12",
+    "phpstan/phpstan-strict-rules": "^0.12"
   },
   "autoload": {
     "classmap": ["3rd/"],
@@ -32,17 +35,10 @@
       "Tests\\Helpers\\": "tests/helpers"
     }
   },
-  "scripts": {
-    "qa": [
-      "linter src tests",
-      "codesniffer src tests"
-    ],
-    "tester": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini tests/cases"
-    ],
-    "tester-coverage": [
-      "tester -s -p php --colors 1 -c tests/php-unix.ini -d extension=xdebug.so --coverage ./coverage.xml --coverage-src ./src tests/cases"
-    ]
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
   },
   "extra": {
     "branch-alias": {
