@@ -32,7 +32,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Helpers\\": "tests/helpers"
+      "Tests\\Fixtures\\": "tests/fixtures"
     }
   },
   "minimum-stability": "dev",

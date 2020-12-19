@@ -8,13 +8,14 @@ use Contributte\SeznamCaptcha\Forms\CaptchaHash;
 use Contributte\SeznamCaptcha\Forms\CaptchaImage;
 use Contributte\SeznamCaptcha\Forms\CaptchaInput;
 use Nette\Forms\Form;
+use Ninjify\Nunjuck\Toolkit;
 use Tester\Assert;
 use Tests\Fixtures\FakeProviderFactory;
 use Tests\Fixtures\FakeSeznamCaptcha;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
+Toolkit::test(function () {
 	$factory = new FakeProviderFactory();
 	FormBinder::bind($factory);
 

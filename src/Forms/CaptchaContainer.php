@@ -56,7 +56,10 @@ class CaptchaContainer extends Container
 		return $this->getCode()->addRule($validator, $message, $arg);
 	}
 
-	public function setRequired(string $message): CaptchaInput
+	/**
+	 * @param string|bool $message
+	 */
+	public function setRequired($message): CaptchaInput
 	{
 		return $this->addRule(function ($code): bool {
 			return $this->verify() === true;

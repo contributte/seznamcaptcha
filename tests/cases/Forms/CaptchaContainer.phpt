@@ -6,13 +6,14 @@ use Contributte\SeznamCaptcha\Forms\CaptchaContainer;
 use Contributte\SeznamCaptcha\Forms\CaptchaHash;
 use Contributte\SeznamCaptcha\Forms\CaptchaImage;
 use Contributte\SeznamCaptcha\Forms\CaptchaInput;
+use Ninjify\Nunjuck\Toolkit;
 use Tester\Assert;
 use Tests\Fixtures\FakeProviderFactory;
 use Tests\Fixtures\FakeSeznamCaptcha;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-test(function () {
+Toolkit::test(function () {
 	$factory = new FakeProviderFactory();
 	$captcha = new CaptchaContainer($factory->create());
 	Assert::type(CaptchaImage::class, $captcha['image']);
@@ -23,7 +24,7 @@ test(function () {
 	Assert::equal(FakeSeznamCaptcha::IMAGE, $captcha['image']->getImage());
 });
 
-test(function () {
+Toolkit::test(function () {
 	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = true));
 	$validator = $captcha->getValidator();
 
@@ -32,7 +33,7 @@ test(function () {
 });
 
 
-test(function () {
+Toolkit::test(function () {
 	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = false));
 	$validator = $captcha->getValidator();
 

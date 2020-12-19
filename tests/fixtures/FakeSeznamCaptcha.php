@@ -7,7 +7,7 @@ use Contributte\SeznamCaptcha\Provider\SeznamCaptcha;
 final class FakeSeznamCaptcha extends SeznamCaptcha
 {
 
-	public const HASH = 12345;
+	public const HASH = '12345';
 	public const IMAGE = 'foobar';
 
 	/** @var bool */
