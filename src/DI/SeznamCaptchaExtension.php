@@ -14,7 +14,7 @@ final class SeznamCaptchaExtension extends CompilerExtension
 
 	/** @var array */
 	private $defaults = [
-		'auto' => TRUE,
+		'auto' => true,
 		'method' => 'http',
 	];
 
@@ -42,7 +42,7 @@ final class SeznamCaptchaExtension extends CompilerExtension
 		$providerFactory = $builder->addDefinition($this->prefix('providerFactory'));
 		if ($config['method'] === 'http') {
 			$providerFactory->setClass(HttpProviderFactory::class);
-		} else if ($config['method'] === 'xmlrpc') {
+		} elseif ($config['method'] === 'xmlrpc') {
 			$providerFactory->setClass(XmlRpcProviderFactory::class);
 		}
 	}
@@ -55,7 +55,7 @@ final class SeznamCaptchaExtension extends CompilerExtension
 	{
 		$config = $this->validateConfig($this->defaults);
 
-		if ($config['auto'] === TRUE) {
+		if ($config['auto'] === true) {
 			$method = $class->getMethod('initialize');
 			$method->addBody('?::bind($this->getService(?));', [new PhpLiteral(FormBinder::class), $this->prefix('providerFactory')]);
 		}

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tests\Fixtures;
 
@@ -7,8 +7,8 @@ use Contributte\SeznamCaptcha\Provider\SeznamCaptcha;
 final class FakeSeznamCaptcha extends SeznamCaptcha
 {
 
-	const HASH = 12345;
-	const IMAGE = 'foobar';
+	public const HASH = 12345;
+	public const IMAGE = 'foobar';
 
 	/** @var bool */
 	private $pass;
@@ -16,9 +16,9 @@ final class FakeSeznamCaptcha extends SeznamCaptcha
 	/**
 	 * @param bool $pass
 	 */
-	public function __construct($pass = TRUE)
+	public function __construct($pass = true)
 	{
-	    parent::__construct(new FakeCaptcha('https://fake.tld', 12345));
+		parent::__construct(new FakeCaptcha('https://fake.tld', 12345));
 		$this->pass = $pass;
 	}
 

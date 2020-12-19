@@ -64,7 +64,7 @@ class CaptchaContainer extends Container
 	 * @param mixed $arg
 	 * @return CaptchaInput
 	 */
-	public function addRule($validator, $message = NULL, $arg = NULL)
+	public function addRule($validator, $message = null, $arg = null)
 	{
 		return $this->getCode()->addRule($validator, $message, $arg);
 	}
@@ -76,7 +76,7 @@ class CaptchaContainer extends Container
 	public function setRequired($message)
 	{
 		return $this->addRule(function ($code) {
-			return $this->verify() === TRUE;
+			return $this->verify() === true;
 		}, $message);
 	}
 
@@ -85,7 +85,7 @@ class CaptchaContainer extends Container
 	 */
 	public function verify()
 	{
-		$form = $this->getForm(TRUE);
+		$form = $this->getForm(true);
 		$code = $form->getHttpData($form::DATA_LINE, $this->getCode()->getHtmlName());
 		$hash = $form->getHttpData($form::DATA_LINE, $this->getHash()->getHtmlName());
 

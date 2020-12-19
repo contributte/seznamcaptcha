@@ -24,7 +24,7 @@ test(function () {
 });
 
 test(function () {
-	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = TRUE));
+	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = true));
 	$validator = $captcha->getValidator();
 
 	// Always true, because of FakeSeznamCaptcha($pass)
@@ -33,7 +33,7 @@ test(function () {
 
 
 test(function () {
-	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = FALSE));
+	$captcha = new CaptchaContainer(new FakeSeznamCaptcha($pass = false));
 	$validator = $captcha->getValidator();
 
 	// Always false, because of FakeSeznamCaptcha($pass)
