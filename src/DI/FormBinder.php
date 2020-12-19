@@ -15,7 +15,7 @@ final class FormBinder
 	 */
 	public static function bind(ProviderFactory $providerFactory)
 	{
-		Container::extensionMethod('addCaptcha', function ($container, $name = 'captcha', $required = true) use ($providerFactory) {
+		Container::extensionMethod('addCaptcha', function ($container, $name = 'captcha', $required = true) use ($providerFactory): CaptchaContainer {
 			$field = $container[$name] = new CaptchaContainer($providerFactory->create());
 			$field->setRequired($required);
 

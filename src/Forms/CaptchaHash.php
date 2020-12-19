@@ -12,27 +12,18 @@ class CaptchaHash extends HiddenField
 	/** @var CaptchaProvider */
 	private $provider;
 
-	/**
-	 * @param CaptchaProvider $provider
-	 */
 	public function __construct(CaptchaProvider $provider)
 	{
 		parent::__construct($provider->getHash());
 		$this->provider = $provider;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getHash()
+	public function getHash(): string
 	{
 		return $this->provider->getHash();
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getHttpHash()
+	public function getHttpHash(): string
 	{
 		return $this->getHttpData(Form::DATA_LINE);
 	}

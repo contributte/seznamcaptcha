@@ -6,6 +6,7 @@ use Contributte\SeznamCaptcha\CaptchaValidator;
 use Contributte\SeznamCaptcha\Provider\CaptchaProvider;
 use Contributte\SeznamCaptcha\Validator;
 use Nette\Forms\Container;
+use Nette\Forms\Form;
 
 class CaptchaContainer extends Container
 {
@@ -18,7 +19,6 @@ class CaptchaContainer extends Container
 	 */
 	public function __construct(CaptchaProvider $provider)
 	{
-		parent::__construct();
 		$this->validator = new CaptchaValidator($provider);
 
 		$this['image'] = new CaptchaImage('Captcha', $provider);
@@ -26,34 +26,22 @@ class CaptchaContainer extends Container
 		$this['hash'] = new CaptchaHash($provider);
 	}
 
-	/**
-	 * @return CaptchaImage
-	 */
-	public function getImage()
+	public function getImage(): CaptchaImage
 	{
 		return $this['image'];
 	}
 
-	/**
-	 * @return CaptchaInput
-	 */
-	public function getCode()
+	public function getCode(): CaptchaInput
 	{
 		return $this['code'];
 	}
 
-	/**
-	 * @return CaptchaHash
-	 */
-	public function getHash()
+	public function getHash(): CaptchaHash
 	{
 		return $this['hash'];
 	}
 
-	/**
-	 * @return Validator
-	 */
-	public function getValidator()
+	public function getValidator(): Validator
 	{
 		return $this->validator;
 	}
@@ -62,20 +50,15 @@ class CaptchaContainer extends Container
 	 * @param mixed $validator
 	 * @param mixed $message
 	 * @param mixed $arg
-	 * @return CaptchaInput
 	 */
-	public function addRule($validator, $message = null, $arg = null)
+	public function addRule($validator, $message = null, $arg = null): CaptchaInput
 	{
 		return $this->getCode()->addRule($validator, $message, $arg);
 	}
 
-	/**
-	 * @param string $message
-	 * @return CaptchaInput
-	 */
-	public function setRequired($message)
+	public function setRequired(string $message): CaptchaInput
 	{
-		return $this->addRule(function ($code) {
+		return $this->addRule(function ($code): bool {
 			return $this->verify() === true;
 		}, $message);
 	}
@@ -86,8 +69,9 @@ class CaptchaContainer extends Container
 	public function verify()
 	{
 		$form = $this->getForm(true);
-		$code = $form->getHttpData($form::DATA_LINE, $this->getCode()->getHtmlName());
-		$hash = $form->getHttpData($form::DATA_LINE, $this->getHash()->getHtmlName());
+		assert($form !== null);
+		$code = $form->getHttpData(Form::DATA_LINE, $this->getCode()->getHtmlName());
+		$hash = $form->getHttpData(Form::DATA_LINE, $this->getHash()->getHtmlName());
 
 		return $this->validator->validate($code, $hash);
 	}

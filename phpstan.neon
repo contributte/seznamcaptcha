@@ -1,0 +1,9 @@
+includes:
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- vendor/phpstan/phpstan-nette/extension.neon
+	- vendor/phpstan/phpstan-nette/rules.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+	ignoreErrors:
+		- '#Method Contributte\\SeznamCaptcha\\Forms\\CaptchaContainer::\w+\(\) should return Contributte\\SeznamCaptcha\\Forms\\\w+ but returns Nette\\ComponentModel\\IComponent.#'

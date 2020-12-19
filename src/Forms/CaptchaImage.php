@@ -12,11 +12,7 @@ class CaptchaImage extends BaseControl
 	/** @var CaptchaProvider */
 	private $provider;
 
-	/**
-	 * @param string $label
-	 * @param CaptchaProvider $provider
-	 */
-	public function __construct($label, CaptchaProvider $provider)
+	public function __construct(string $label, CaptchaProvider $provider)
 	{
 		parent::__construct($label);
 		$this->provider = $provider;
@@ -25,20 +21,17 @@ class CaptchaImage extends BaseControl
 		$this->control->addClass('captcha-image seznam-captcha-image');
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getImage()
+	public function getImage(): string
 	{
 		return $this->provider->getImage();
 	}
 
-	/**
-	 * @return Html
-	 */
-	public function getControl()
+	public function getControl(): Html
 	{
 		$img = parent::getControl();
+
+		assert($img instanceof Html);
+
 		$img->addAttributes([
 			'src' => $this->getImage(),
 		]);

@@ -7,19 +7,23 @@ use Contributte\SeznamCaptcha\Provider\XmlRpcProviderFactory;
 use Nette\DI\CompilerExtension;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpLiteral;
-use Nette\Utils\AssertionException;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
+use stdClass;
 
+/**
+ * @property-read stdClass $config
+ */
 final class SeznamCaptchaExtension extends CompilerExtension
 {
 
-	/** @var array */
-	private $defaults = [
-		'auto' => true,
-		'method' => 'http',
-	];
-
-	/** @var array */
-	private static $methods = ['http', 'xmlrpc'];
+	public function getConfigSchema(): Schema
+	{
+		return Expect::structure([
+			'auto' => Expect::bool(true),
+			'method' => Expect::anyOf('http', 'xmlrpc'),
+		]);
+	}
 
 	/**
 	 * Register services
@@ -29,21 +33,14 @@ final class SeznamCaptchaExtension extends CompilerExtension
 	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
-		$config = $this->validateConfig($this->defaults);
-
-		// Validate methods
-		if (!in_array($config['method'], self::$methods)) {
-			throw new AssertionException(
-				'Method is not valid. Allowed methods are: ' . implode(', ', self::$methods)
-			);
-		}
+		$config = $this->config;
 
 		// Add provider
 		$providerFactory = $builder->addDefinition($this->prefix('providerFactory'));
-		if ($config['method'] === 'http') {
-			$providerFactory->setClass(HttpProviderFactory::class);
-		} elseif ($config['method'] === 'xmlrpc') {
-			$providerFactory->setClass(XmlRpcProviderFactory::class);
+		if ($config->method === 'http') {
+			$providerFactory->setFactory(HttpProviderFactory::class);
+		} elseif ($config->method === 'xmlrpc') {
+			$providerFactory->setFactory(XmlRpcProviderFactory::class);
 		}
 	}
 
@@ -53,9 +50,9 @@ final class SeznamCaptchaExtension extends CompilerExtension
 	 */
 	public function afterCompile(ClassType $class)
 	{
-		$config = $this->validateConfig($this->defaults);
+		$config = $this->config;
 
-		if ($config['auto'] === true) {
+		if ($config->auto === true) {
 			$method = $class->getMethod('initialize');
 			$method->addBody('?::bind($this->getService(?));', [new PhpLiteral(FormBinder::class), $this->prefix('providerFactory')]);
 		}
