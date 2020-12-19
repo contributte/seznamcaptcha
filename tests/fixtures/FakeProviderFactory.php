@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
-namespace Tests\Helpers;
+namespace Tests\Fixtures;
 
 use Contributte\SeznamCaptcha\Provider\ProviderFactory;
 

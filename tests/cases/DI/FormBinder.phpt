@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
-/**
- * Test: DI\FormBinder
- */
+namespace Tests\Cases\DI;
 
 use Contributte\SeznamCaptcha\DI\FormBinder;
 use Contributte\SeznamCaptcha\Forms\CaptchaContainer;
@@ -11,8 +9,8 @@ use Contributte\SeznamCaptcha\Forms\CaptchaImage;
 use Contributte\SeznamCaptcha\Forms\CaptchaInput;
 use Nette\Forms\Form;
 use Tester\Assert;
-use Tests\Helpers\FakeProviderFactory;
-use Tests\Helpers\FakeSeznamCaptcha;
+use Tests\Fixtures\FakeProviderFactory;
+use Tests\Fixtures\FakeSeznamCaptcha;
 
 require_once __DIR__ . '/../../bootstrap.php';
 

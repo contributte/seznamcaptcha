@@ -1,8 +1,4 @@
-<?php
-
-/**
- * Test boostrap.
- */
+<?php declare(strict_types = 1);
 
 use Ninjify\Nunjuck\Environment;
 
@@ -11,5 +7,7 @@ if (@!include __DIR__ . '/../vendor/autoload.php') {
 	exit(1);
 }
 
-// configure environment
-Environment::setup(__DIR__);
+// Configure environment
+Environment::setupTester();
+Environment::setupTimezone();
+Environment::setupVariables(__DIR__);
