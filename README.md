@@ -23,7 +23,7 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 To install latest version of `contributte/seznamcaptcha` use [Composer](https://getcomposer.org).
 
 ```bash
-composer install contributte/seznamcaptcha
+composer require contributte/seznamcaptcha
 ```
 
 ## Documentation
